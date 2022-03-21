@@ -30,16 +30,17 @@ function App() {
         />
         <h2>Transactions</h2>
         <table id="transactions">
-          <th>
+          <thead>
             <tr>
-              <td>Date</td>
-              <td className="description">Description</td>
-              <td>Balanced</td>
+              <th>Date</th>
+              <th className="description">Description</th>
+              <th>Balanced</th>
             </tr>
-          </th>
+          </thead>
           {
             // TODO: refactor this prop passing to be an imported hook
           }
+
           <TransactionList transactions={transactions} />
         </table>
       </main>
