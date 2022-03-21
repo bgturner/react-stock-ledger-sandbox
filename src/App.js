@@ -1,4 +1,6 @@
 import "./App.css";
+import { useState } from "react";
+import NewTransaction from "./NewTransaction";
 
 const isBalanced = (transaction) => {
   return 0;
@@ -42,6 +44,17 @@ const startingTransactions = [
 ];
 
 function App() {
+  const [transactions, setTransactions] = useState(startingTransactions);
+
+  const createTransaction = (date, description) => {
+    const newTransaction = {
+      date,
+      description,
+      items: [],
+    };
+    setTransactions([...transactions, newTransaction]);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -58,7 +71,7 @@ function App() {
             </tr>
           </th>
           <tbody>
-            {startingTransactions.map((t) => {
+            {transactions.map((t) => {
               return (
                 <tr>
                   <td>{t.date}</td>
@@ -81,6 +94,13 @@ function App() {
               );
             })}
           </tbody>
+          <tfooter>
+            <NewTransaction
+              handleSubmit={(date, description) =>
+                createTransaction(date, description)
+              }
+            />
+          </tfooter>
         </table>
       </main>
     </div>
