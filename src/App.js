@@ -1,47 +1,8 @@
 import "./App.css";
 import { useState } from "react";
 import NewTransaction from "./NewTransaction";
-
-const isBalanced = (transaction) => {
-  return 0;
-};
-
-const startingTransactions = [
-  {
-    date: "2022-03-21",
-    description: "Buy 3 shares of Microsoft",
-    items: [
-      {
-        account: "Assets:Webull:Brokerage",
-        amount: 3,
-        commodity: "MSFT",
-        avgPriceUSD: "300.43",
-      },
-      {
-        account: "Assets:Webull:Cash",
-        amount: -901.29,
-        commodity: "$",
-      },
-    ],
-  },
-  {
-    date: "2022-03-20",
-    description: "Buy 4 shares of Coinbase",
-    items: [
-      {
-        account: "Assets:Webull:Brokerage",
-        amount: 4,
-        avgPriceUSD: 185.5,
-        commodity: "COIN",
-      },
-      {
-        account: "Assets:Webull:Cash",
-        amount: -742.0,
-        commodity: "$",
-      },
-    ],
-  },
-];
+import TransactionList from "./TransactionList";
+import startingTransactions from "./startingTransactions";
 
 function App() {
   const [transactions, setTransactions] = useState(startingTransactions);
@@ -70,30 +31,10 @@ function App() {
               <td>Balanced</td>
             </tr>
           </th>
-          <tbody>
-            {transactions.map((t) => {
-              return (
-                <tr>
-                  <td>{t.date}</td>
-                  <td className="description">
-                    {t.description}
-                    <table className="items">
-                      {t.items.map((i) => {
-                        return (
-                          <tr className="item">
-                            <td className="account">{i.account}</td>
-                            <td className="amount">{i.amount}</td>
-                            <td className="commodity">{i.commodity}</td>
-                          </tr>
-                        );
-                      })}
-                    </table>
-                  </td>
-                  <td>{isBalanced(t)}</td>
-                </tr>
-              );
-            })}
-          </tbody>
+          {
+            // TODO: refactor this prop passing to be an imported hook
+          }
+          <TransactionList transactions={transactions} />
           <tfooter>
             <NewTransaction
               handleSubmit={(date, description) =>
