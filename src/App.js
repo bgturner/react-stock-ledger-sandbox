@@ -7,9 +7,10 @@ import startingTransactions from "./startingTransactions";
 function App() {
   const [transactions, setTransactions] = useState(startingTransactions);
 
-  const createTransaction = (date, description) => {
+  const createTransaction = (date, time, description) => {
     const newTransaction = {
       date,
+      time,
       description,
       items: [],
     };
@@ -22,6 +23,11 @@ function App() {
         <h1>Stock Ledger</h1>
       </header>
       <main>
+        <NewTransaction
+          handleSubmit={(date, time, description) =>
+            createTransaction(date, time, description)
+          }
+        />
         <h2>Transactions</h2>
         <table id="transactions">
           <th>
@@ -35,13 +41,6 @@ function App() {
             // TODO: refactor this prop passing to be an imported hook
           }
           <TransactionList transactions={transactions} />
-          <tfooter>
-            <NewTransaction
-              handleSubmit={(date, description) =>
-                createTransaction(date, description)
-              }
-            />
-          </tfooter>
         </table>
       </main>
     </div>

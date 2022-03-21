@@ -1,6 +1,7 @@
 const startingTransactions = [
   {
     date: "2022-03-21",
+    time: "09:15",
     description: "Buy 3 shares of Microsoft",
     items: [
       {
@@ -18,6 +19,7 @@ const startingTransactions = [
   },
   {
     date: "2022-03-20",
+    time: "13:30",
     description: "Buy 4 shares of Coinbase",
     items: [
       {

@@ -9,8 +9,10 @@ const TransactionList = (props) => {
     <tbody>
       {props.transactions.map((t) => {
         return (
-          <tr>
-            <td>{t.date}</td>
+          <tr key={`${t.date}-${t.time}`}>
+            <td>
+              {t.date} {t.time}
+            </td>
             <td className="description">
               {t.description}
               <table className="items">
